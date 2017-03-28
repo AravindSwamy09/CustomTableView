@@ -49,13 +49,17 @@ extension ViewController : UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let alert = UIAlertController(title: "Alert", message: "Selected Row", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Alert", message: "Selected Row", preferredStyle: .actionSheet)
         
-        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let action = UIAlertAction(title: "Ok", style: .default){ action in
+            
+            tableView.backgroundColor = UIColor.randomColor()
+            
+        }
         
         let cancel = UIAlertAction(title: "Cancel", style: .destructive) { action in
             
-            tableView.backgroundColor = UIColor.red
+            tableView.backgroundColor = UIColor.clear
             
         }
         
@@ -69,4 +73,23 @@ extension ViewController : UITableViewDelegate{
     }
     
 }
+
+
+
+extension CGFloat{
+    
+    static func random() -> CGFloat{
+        return CGFloat(arc4random())/CGFloat(UInt32.max)
+    }
+    
+}
+
+extension UIColor{
+    
+    static func randomColor() -> UIColor{
+        return UIColor(red: .random(), green: .random(), blue: .random(), alpha: 1.0)
+    }
+    
+}
+
 
